@@ -276,6 +276,7 @@ class CrawlUrlHandler:
             self.api_collector = ApiCollector(self.cdp_client, self.url, self.args, self._log)
             self.script_collector = ScriptCollector(self.cdp_client, self.args, self._log)
             self.websocket_collector = WebsocketCollector(self.page, self.url, self._log)
+            self.form_finder = FormFinder(self.pw, self.page, self.args, self._log)
 
             filled_values, codegen_url, final_url, timed_out_instructions, timestamps = \
                 self.perform_codegen()
