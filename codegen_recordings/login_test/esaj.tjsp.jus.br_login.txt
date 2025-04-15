@@ -1,0 +1,20 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://esaj.tjsp.jus.br/esaj/portal.do?servico=740000")
+    page.get_by_role("link", name="Identificar-se").click()
+    page.get_by_label("CPF/CNPJ*:").fill("123.456.789- ")
+    page.get_by_label("Senha*:").click()
+    page.get_by_label("Senha*:").fill("TestPassword4!")
+    page.get_by_role("button", name="Entrar").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

@@ -1,0 +1,20 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://batepapo.uol.com.br/")
+    page.get_by_test_id("approach-modal-close").locator("path").click()
+    page.get_by_title("Login VIP").click()
+    page.get_by_placeholder(" ").click()
+    page.get_by_placeholder(" ").fill("TestEmail@Test.com")
+    page.get_by_label("Botão Continuar").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

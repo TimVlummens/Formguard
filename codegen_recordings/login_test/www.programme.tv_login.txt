@@ -1,0 +1,21 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://www.programme.tv/")
+    page.frame_locator("iframe[title=\"Consentement cookie\"]").get_by_label("Accepter").click()
+    page.get_by_role("button", name="Me connecter").click()
+    page.get_by_placeholder("monemail@email.com").click()
+    page.get_by_placeholder("monemail@email.com").fill("Test")
+    page.get_by_placeholder("monemail@email.com").click()
+    page.get_by_placeholder("monemail@email.com").fill("TestEmail@Test.com")
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

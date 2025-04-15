@@ -1,0 +1,24 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://www.beebehealthcare.org/donate-credit-card")
+    page.get_by_label("Cardholder name:").click()
+    page.get_by_label("Cardholder name:").fill("First Last")
+    page.get_by_label("Card number:").click()
+    page.get_by_label("Card number:").fill("1234123412341234")
+    page.get_by_label("Expiration:").select_option("1")
+    page.get_by_label("Year:").select_option("2025")
+    page.get_by_label("CSC:").click()
+    page.get_by_label("CSC:").fill("123")
+    page.get_by_label("CSC:").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

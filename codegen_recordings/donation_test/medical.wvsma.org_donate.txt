@@ -1,0 +1,36 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.firefox.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://medical.wvsma.org/ap/donate/8mP798rZ")
+    page.get_by_role("button", name="Contribute Now").click()
+    page.get_by_role("textbox").first.click()
+    page.get_by_role("textbox").first.fill("First")
+    page.get_by_role("textbox").nth(1).click()
+    page.get_by_role("textbox").nth(1).fill("Last")
+    page.get_by_role("textbox").nth(2).click()
+    page.get_by_role("textbox").nth(2).fill("TestEmail@Test.com")
+    page.get_by_text("Continue", exact=True).first.click()
+    page.get_by_placeholder("Enter Amount").click()
+    page.get_by_placeholder("Enter Amount").fill("10")
+    page.get_by_text("Continue", exact=True).nth(1).click()
+    page.get_by_text("Continue", exact=True).nth(2).click()
+    page.get_by_text("Continue", exact=True).nth(3).click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame7829\"]").get_by_placeholder("1234 1234 1234").click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame7829\"]").get_by_placeholder("1234 1234 1234").fill("1234 1234 1234 1234")
+    page.frame_locator("iframe[name=\"__privateStripeFrame7829\"]").get_by_placeholder("MM / YY").click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame7829\"]").get_by_placeholder("MM / YY").fill("01 / 25")
+    page.frame_locator("iframe[name=\"__privateStripeFrame7829\"]").get_by_placeholder("CVC").click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame7829\"]").get_by_placeholder("CVC").fill("123")
+    page.frame_locator("iframe[name=\"__privateStripeFrame7829\"]").get_by_placeholder("12345").click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame7829\"]").get_by_placeholder("12345").fill("12345")
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

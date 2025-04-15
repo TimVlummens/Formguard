@@ -1,0 +1,37 @@
+# url: https://www.facebook.com
+
+# list: ../input_backup/lists/list_50k.txt
+# list: ../input_backup/lists/list_100k.txt
+
+# list: ../input_backup/lists/list_compare_1k.txt
+
+# use virtual display when headless is true
+headless: false
+# window_pos_x: -3000
+window_pos_x: 0
+window_pos_y: 0
+
+# "0": "full" ,     "1": "limit_filled" ,    "2": "landing_page" ,     "3": "record_replay" ,    "4": "replay" ,     "5": "compare_detection"
+mode: 4
+amount: 3
+cpu_slice: 0.5
+crawl_max_duration: 300
+
+# Output
+output_path: ..\output\output_donation_2\
+record_full: true
+resume: false
+screenshot: false
+video: false
+
+# Page interaction
+pierce: true
+accept_cookies: true
+
+# Codegen
+replay_path: ..\codegen_recordings\login_test\
+record_with_firefox: false
+replay_multiple: true
+substitute_frames: true
+wait_for_close: false
+clear_fields: true

@@ -1,0 +1,40 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://runsignup.com/Race/Donate/MA/Braintree/SprintforSuperSaturdays")
+    page.get_by_label("Enter donation amount").click()
+    page.get_by_label("Enter donation amount").fill("10")
+    page.get_by_role("button", name="Continue").click()
+    page.get_by_label("Credit Card Number *").click()
+    page.get_by_label("Credit Card Number *").fill("1234123412341234")
+    page.get_by_label("Expiration Date *").select_option("1")
+    page.get_by_label("01 - January 02 - February 03").select_option("2025")
+    page.get_by_label("CVV *").click()
+    page.get_by_label("CVV *").fill("123")
+    page.get_by_label("First Name *").click()
+    page.get_by_label("First Name *").fill("Firstname")
+    page.get_by_label("Last Name *").click()
+    page.get_by_label("Last Name *").fill("Lastname")
+    page.get_by_label("Address *").click()
+    page.get_by_label("Address *").fill("Address 1")
+    page.get_by_label("Zip Code *").click()
+    page.get_by_label("Zip Code *").fill("12345")
+    page.get_by_label("City *").click()
+    page.locator("input[name=\"first_name\"]").click()
+    page.locator("input[name=\"first_name\"]").fill("Firstname")
+    page.locator("input[name=\"last_name\"]").click()
+    page.locator("input[name=\"last_name\"]").fill("Lastname")
+    page.locator("#donationForm input[name=\"email\"]").click()
+    page.locator("#donationForm input[name=\"email\"]").fill("TestEmail@Test.com")
+    page.get_by_role("button", name="Confirm Donation").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

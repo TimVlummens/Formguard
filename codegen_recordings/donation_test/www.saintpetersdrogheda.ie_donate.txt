@@ -1,0 +1,36 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.firefox.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://www.saintpetersdrogheda.ie/our-parish/donate/")
+    page.locator("#site-navigation").get_by_role("link", name="DONATE").click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame1573\"]").get_by_placeholder("Card Number").click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame1573\"]").get_by_placeholder("Card Number").fill("1234 1234 1234 1234")
+    page.frame_locator("iframe[name=\"__privateStripeFrame1574\"]").get_by_placeholder("CVC").click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame1574\"]").get_by_placeholder("CVC").fill("1234")
+    page.get_by_placeholder("Cardholder Name").click()
+    page.get_by_placeholder("Cardholder Name").fill("First Last")
+    page.frame_locator("iframe[name=\"__privateStripeFrame1575\"]").get_by_placeholder("MM / YY").click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame1575\"]").get_by_placeholder("MM / YY").fill("01 / 25")
+    page.get_by_label("* Terms and Conditions").check()
+    page.get_by_placeholder("First Name").click()
+    page.get_by_placeholder("First Name").fill("First")
+    page.get_by_placeholder("Last Name").click()
+    page.get_by_placeholder("Last Name").fill("Last")
+    page.get_by_placeholder("Email Address").click()
+    page.get_by_placeholder("Email Address").fill("TestEmail@Test.com")
+    page.get_by_placeholder("Postal Address    \n\t\t\n\t\tRequired").click()
+    page.get_by_placeholder("Postal Address    \n\t\t\n\t\tRequired").fill("Address 1")
+    page.get_by_placeholder("Phone Number    \n\t\t\n\t\tRequired").click()
+    page.get_by_placeholder("Phone Number    \n\t\t\n\t\tRequired").fill("0032123123456")
+    page.get_by_role("button", name="Donate Now").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

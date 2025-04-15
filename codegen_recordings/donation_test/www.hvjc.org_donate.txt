@@ -1,0 +1,32 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.firefox.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://www.hvjc.org/donate/")
+    page.get_by_label("Donor Name(Required)").click()
+    page.get_by_label("Donor Name(Required)").fill("First Last")
+    page.get_by_label("Enter Email").click()
+    page.get_by_label("Enter Email").fill("TestEmail@Test.com")
+    page.get_by_label("Confirm Email").click()
+    page.get_by_label("Confirm Email").fill("TestEmail@Test.com")
+    page.get_by_label("Donation Amount(Required)").click()
+    page.get_by_label("Donation Amount(Required)").fill("10")
+    page.get_by_label("Street Address").click()
+    page.get_by_label("Street Address").fill("Address 1")
+    page.frame_locator("iframe[name=\"__privateStripeFrame7644\"]").get_by_placeholder("1234 1234 1234").click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame7644\"]").get_by_placeholder("1234 1234 1234").fill("1234 1243 4123 1234")
+    page.frame_locator("iframe[name=\"__privateStripeFrame7644\"]").get_by_placeholder("MM / YY").click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame7644\"]").get_by_placeholder("MM / YY").fill("01 / 25")
+    page.frame_locator("iframe[name=\"__privateStripeFrame7644\"]").get_by_placeholder("CVC").click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame7644\"]").get_by_placeholder("CVC").fill("123")
+    page.get_by_role("button", name="Submit Your Donation").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

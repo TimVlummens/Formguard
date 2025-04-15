@@ -1,0 +1,24 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://www.lg.com/be_fr")
+    page.get_by_role("button", name="TOUT ACCEPTER").click()
+    page.get_by_role("link", name="New notification Mon LG").click()
+    page.get_by_role("link", name="Se connecter / S'inscrire").click()
+    page.get_by_label("Compte Email*").click()
+    page.get_by_label("Compte Email*").fill("TestEmail@Test.com")
+    page.get_by_text("Mot de passe", exact=True).click()
+    page.get_by_label("Mot de passe").fill("TestPassword4!")
+    page.locator("label").filter(has_text="Se souvenir de mon adresse").locator("span").first.click()
+    page.get_by_role("button", name="Se connecter").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

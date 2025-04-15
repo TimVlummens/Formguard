@@ -1,0 +1,30 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://caringandsharing.ca/index.php?option=com_content&view=article&id=37&Itemid=130")
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("Credit card number").click()
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("Credit card number").fill("1234123412341234")
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("Expiry (MM/YY)").click()
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("Expiry (MM/YY)").fill("01/25")
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("CVV").click()
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("CVV").fill("123")
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("Name on card").click()
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("Name on card").fill("First Last")
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_text("Custom amount", exact=True).click()
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("Custom amount").fill("10")
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("First Name").click()
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("First Name").fill("First")
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("Last Name").click()
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_placeholder("Last Name").fill("Last")
+    page.frame_locator("iframe[title=\"iframe\"]").get_by_label("button", exact=True).click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

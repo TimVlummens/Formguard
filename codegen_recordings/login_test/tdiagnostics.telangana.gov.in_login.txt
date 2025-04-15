@@ -1,0 +1,19 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://tdiagnostics.telangana.gov.in/login.aspx?AspxAutoDetectCookieSupport=1")
+    page.get_by_label("Username").click()
+    page.get_by_label("Username").fill("TestUsername")
+    page.get_by_label("Password").click()
+    page.get_by_label("Password").fill("TestPassword4!")
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

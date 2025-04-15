@@ -1,0 +1,22 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://www.lassuranceretraite.fr/portail-info/home.html")
+    page.get_by_role("button", name="OK, accepteer alle").click()
+    page.get_by_role("link", name="Mon espace personnel").click()
+    page.get_by_placeholder("N° de Sécurité Sociale (13").click()
+    page.get_by_placeholder("N° de Sécurité Sociale (13").fill("1 23 45 67 891 234_")
+    page.get_by_text("visibilityMot de passe *").click()
+    page.get_by_placeholder("Mot de passe").fill("TestPassword4!")
+    page.get_by_role("button", name="Me connecter").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

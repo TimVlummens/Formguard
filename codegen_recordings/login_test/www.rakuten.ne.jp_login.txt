@@ -1,0 +1,22 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://www.rakuten.co.jp/")
+    page.get_by_label("楽天会員登録(無料)").click()
+    page.goto("https://login.account.rakuten.com/sso/register?client_id=rakuten_ichiba_top_web&service_id=s245&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fwww.rakuten.co.jp%2F#/registration/1")
+    page.get_by_label("メールアドレス", exact=True).click()
+    page.get_by_label("メールアドレス", exact=True).fill("Test1")
+    page.get_by_label("メールアドレス再入力").click()
+    page.get_by_label("メールアドレス再入力").fill("Test2")
+    page.get_by_role("button", name="確認に進む").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

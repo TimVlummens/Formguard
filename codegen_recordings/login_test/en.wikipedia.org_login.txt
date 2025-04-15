@@ -1,0 +1,22 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://en.wikipedia.org/wiki/Main_Page")
+    page.get_by_role("link", name="Log in").click()
+    page.get_by_placeholder("Enter your username").click()
+    page.get_by_placeholder("Enter your username").fill("TestUsername")
+    page.get_by_placeholder("Enter your password").click()
+    page.get_by_placeholder("Enter your password").fill("TestPassword'!")
+    page.get_by_label("Keep me logged in (for up to").check()
+    page.get_by_role("button", name="Log in").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

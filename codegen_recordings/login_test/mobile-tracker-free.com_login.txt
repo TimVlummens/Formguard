@@ -1,0 +1,21 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://mobile-tracker-free.com/")
+    page.get_by_role("link", name=" Login").click()
+    page.get_by_placeholder("Email", exact=True).click()
+    page.get_by_placeholder("Email", exact=True).fill("TestEmail@Test.com")
+    page.get_by_placeholder("Password").click()
+    page.get_by_placeholder("Password").fill("TestPassword4!")
+    page.get_by_role("button", name="Sign in ").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

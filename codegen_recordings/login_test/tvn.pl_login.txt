@@ -1,0 +1,24 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://tvn.pl/")
+    page.get_by_role("button", name="Akceptuję").click()
+    page.get_by_label("Zarządzanie kontem").click()
+    page.get_by_role("button", name="Zaloguj się").click()
+    page.get_by_role("button", name="Zaloguj się e-mailem").click()
+    page.get_by_label("E-mail *").click()
+    page.get_by_label("E-mail *").fill("TestEmail@Test.com")
+    page.get_by_label("Hasło *").click()
+    page.get_by_label("Hasło *").fill("TestPassword4!")
+    page.get_by_role("button", name="Zaloguj się").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

@@ -1,0 +1,21 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://fr.xhspot.com/")
+    page.get_by_test_id("cookies-dialog-eu-accept-all-button").click()
+    page.get_by_role("button", name="Connexion").click()
+    page.get_by_placeholder("Nom d'utilisateur/adresse e-").fill("TestEmail@Test.com")
+    page.get_by_placeholder("Mot de passe *").click()
+    page.get_by_placeholder("Mot de passe *").fill("TestPassword4!")
+    page.locator("form").filter(has_text="Se souvenir de moi Mot de").get_by_role("button").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

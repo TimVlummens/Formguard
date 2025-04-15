@@ -1,0 +1,23 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://www.mayoclinic.org/")
+    page.get_by_role("button", name="I Agree").click()
+    page.get_by_role("link", name="Log in").click()
+    page.get_by_role("link", name="Log in").click()
+    page.get_by_label("Username").click()
+    page.get_by_label("Username").fill("TestUsername")
+    page.get_by_label("Password", exact=True).click()
+    page.get_by_label("Password", exact=True).fill("TestPassword4!")
+    page.get_by_role("button", name="Log in").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

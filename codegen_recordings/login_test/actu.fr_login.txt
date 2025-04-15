@@ -1,0 +1,22 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://actu.fr/")
+    page.get_by_label("Accepter & Fermer: Accepter").click()
+    page.goto("https://auth.infoconnect.fr/auth/realms/infoconnect/protocol/openid-connect/auth?scope=openid&state=hCGVU7eR2MtcmGi-MWn-OAM_XAipWzs-jFUj2edCNic.F5i3aO4Tniw.sb9E4WPQSVSZSPuhd1T3MQ&response_type=code&client_id=deleg-actu-fr&redirect_uri=https%3A%2F%2Fauth.actu.fr%2Fauth%2Frealms%2Factu-fr%2Fbroker%2Finfoconnect%2Fendpoint&original_redirect_uri=https%3A%2F%2Factu.fr%2F&go_to_registration=false&original_client_id=actu-fr-editorial&original_hostname=https%3A%2F%2Fauth.actu.fr%2Fauth%2F&code_challenge=NT5MtZ5XRQj16IchFAj2YsMJEv6ayUODZx2_12FuioE&code_challenge_method=S256&nonce=f9z0LEX9xFa_xLhfMsF1tQ")
+    page.get_by_placeholder("Adresse e-mail").click()
+    page.get_by_placeholder("Adresse e-mail").fill("TestEmail@Test.com")
+    page.get_by_placeholder("Mot de passe").click()
+    page.get_by_placeholder("Mot de passe").fill("TestPassword4!")
+    page.get_by_role("button", name="Je me connecte", exact=True).click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

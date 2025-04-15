@@ -1,0 +1,29 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.firefox.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://givebutter.com/ACO")
+    page.get_by_label("$25", exact=True).check()
+    page.get_by_role("button", name="Continue").click()
+    page.get_by_label("Credit or debit card").check()
+    page.get_by_text("First name*").click()
+    page.get_by_label("First name*").fill("First")
+    page.get_by_text("Last name*", exact=True).click()
+    page.get_by_label("Last name*").fill("Last")
+    page.get_by_label("Email*").click()
+    page.get_by_label("Email*").fill("TestEmail@Test.com")
+    page.get_by_text("Street address*", exact=True).click()
+    page.get_by_label("Street address*").fill("Address 1")
+    page.frame_locator("iframe[name=\"__privateStripeFrame9015\"]").get_by_placeholder("CVC").click()
+    page.frame_locator("iframe[name=\"__privateStripeFrame9015\"]").get_by_placeholder("Card number").fill("123")
+    page.frame_locator("iframe[name=\"__privateStripeFrame9015\"]").get_by_placeholder("CVC").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

@@ -1,0 +1,24 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://fr.xvideos.com/")
+    page.get_by_role("button", name="Entrer - J’ai 18 ans ou plus").click()
+    page.get_by_role("button", name="Accepter tous les cookies").click()
+    page.get_by_role("button", name="").click()
+    page.get_by_role("link", name="Se connecter").click()
+    page.get_by_label("Votre login (email):").fill("TestEmail@Test.com")
+    page.get_by_role("textbox", name="Mot de passe:").click()
+    page.get_by_role("textbox", name="Mot de passe:").fill("TestPassword4!")
+    page.get_by_label("Se rappeler de moi sur cet").check()
+    page.get_by_role("button", name="Connexion").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

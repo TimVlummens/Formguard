@@ -1,0 +1,22 @@
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page.goto("https://www.primevideo.com/offers/nonprimehomepage/ref=dv_web_force_root")
+    page.get_by_test_id("consent-accept-all").click()
+    page.get_by_test_id("desktop-nav").get_by_test_id("pv-nav-account-dropdown-trigger").click()
+    page.get_by_test_id("desktop-nav").get_by_test_id("pv-nav-sign-in").click()
+    page.get_by_label("E-mailadres of mobiel").fill("TestEmail@Test.com")
+    page.get_by_label("Doorgaan").click()
+    page.get_by_label("Wachtwoord").fill("TestPassword4!")
+    page.get_by_label("Inloggen").click()
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)

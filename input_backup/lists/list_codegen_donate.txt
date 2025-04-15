@@ -1,0 +1,41 @@
+4/30
+https://runsignup.com/Race/Donate/MA/Braintree/SprintforSuperSaturdays
+https://www.beebehealthcare.org/donate-credit-card
+https://caringandsharing.ca/index.php?option=com_content&view=article&id=37&Itemid=130
+https://itsmfleaders.org/donate/
+
+12/30
+#frame#  https://missioncommunityservices.com/get-involved/donate/
+#frame#  https://icahd.org/join-us/
+#frame#  https://itsapenalty.org/donate/
+#frame#  https://www.bannerneighborhoods.org/donate/
+#frame#  https://www.saintpetersdrogheda.ie/our-parish/donate/
+#frame#  https://www.dabbaghwelfare.org/afghanistan-emergency-appeal/
+#frame#  https://www.hvjc.org/donate/
+#frame#  https://medical.wvsma.org/ap/donate/8mP798rZ
+#frame#  http://austincivicorchestra.org/donate/
+#frame#  https://cityfresh.org/donate/
+#frame#  https://globalanimalpartnership.org/donate/
+#frame# https://pintofscience.com/donate/
+
+5/30
+#not donation (moved)# https://harvestbuffalo.churchcenter.com/giving
+#not donation (moved)# https://www.rainbowrailroad.org/donate
+#not donation (app)# https://www.fundd.org/page/tap-on-phone
+#not donation (booking)# https://www.airtkt.com/book/confirmation.php?bk=266ef2552b10c0cb
+#not donation (info)#https://www.austinseminary.edu/library/austin-seminary-archives/donate-to-the-archives
+
+5/30
+#not accessible# https://donate.thehumaneleague.org/donate-owa
+#not accessible# https://lifewaysnorthamerica.org/donate-now/
+#not accessible# https://touchofgreyrescue.org/donate/
+#not accessible# https://www2.uregina.ca/external/donor/form.php
+#not accessible# https://www.openhandatlanta.org/get-involved/donate/
+
+2/30
+#navigation# https://makemothersmatter.org/raiseapen/raiseapen-donate/
+#navigation# https://www.fbcloganville.org/giving-help
+
+2/30
+#recording# https://roar-ridgefield.org/donate/
+#recording# https://www.wordforest.org/donate/
