@@ -2,6 +2,19 @@ Formguard
 Copyright © 2025 Gunes Acar, Tim Vlummens
 Licensed GPL v3
 
+LICENSES FOR INCORPORATED CODEBASES
+===================================
+
+* Priv-Accept: GNU GPLv3.0 : https://github.com/marty90/priv-accept
+
+* Mozilla Fathom: Mozilla Public License Version 2.0 : https://github.com/mozilla/fathom/tree/master
+
+* Leaky Forms: GNU GPLv3.0 : https://github.com/leaky-forms/leaky-forms-crawler
+
+* The Double-edged Sword: GNU GPLv3.0 : https://github.com/asumansenol/double_edged_sword_crawler/tree/main
+
+Text of GPLv3 License:
+======================
                      GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
